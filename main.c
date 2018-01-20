@@ -33,10 +33,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <search.h>
+#if 0
 #include <unistd.h>
+#endif
 #include <ctype.h>
 #include <string.h>
 #include "common.h"
+#include "getop.h"
 
 static const char versionstring[] = PACKAGE_VERSION;
 
@@ -224,8 +227,27 @@ main(int argc, char **argv)
 				break;
 		}
 	}
+	else {
+	  for (r = rules; r; r = r->next) {
+	    if (r->predefined) {
+	      /* do not output */
+	    }
+	    else if (r->rule) {
+	      /* do not output */
+	    }
+	    else {
+	      fprintf(stderr, "; %s UNDEFINED\n", r->name);
+	      rc = 1;
+	    }
+
+	    if (r->next == rules) {
+	      break;
+	    }
+	  }
+	}
+	      
   
-	rc = summary();
+	rc += summary();
 	hdestroy();
 	exit(rc);
 }
@@ -679,4 +701,3 @@ summary(void) {
 	}
 	return myerrors;
 }
-
