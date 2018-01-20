@@ -33,13 +33,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <search.h>
-#if 0
 #include <unistd.h>
-#endif
 #include <ctype.h>
 #include <string.h>
 #include "common.h"
-#include "getop.h"
 
 static const char versionstring[] = PACKAGE_VERSION;
 
